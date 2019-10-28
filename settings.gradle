@@ -1,2 +1,2 @@
-include ':app', ':domainLayer'
+include ':app', ':domainLayer', ':networking'
 rootProject.name='PillTracker'
