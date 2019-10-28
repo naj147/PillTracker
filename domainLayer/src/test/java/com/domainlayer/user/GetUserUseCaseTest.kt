@@ -17,23 +17,23 @@ class GetUserUseCaseTest {
     private val userId = "12345"
     private val user = mockk<User>()
 
+    @Test
     fun `should get correct user provided by backend`() {
         runBlockingTest {
             coEvery {
                 userRepository.getUser(any())
             } returns user
         }
+    }
 
-        @Test(expected = Exception::class)
-        fun `should throw exception`() {
-            val exception = Exception("exception")
-            runBlockingTest {
-                coEvery {
-                    userRepository.getUser(any())
-                } throws exception
-
-
-                userUserCase.run(userId)
-            }
+    @Test(expected = Exception::class)
+    fun `should throw exception`() {
+        val exception = Exception("exception")
+        runBlockingTest {
+            coEvery {
+                userRepository.getUser(any())
+            } throws exception
+            userUserCase.run(userId)
         }
     }
+}
